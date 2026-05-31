@@ -4,9 +4,14 @@ Data fetching utilities: Apple financials via yfinance, macro indicators via FRE
 
 import pandas as pd
 import yfinance as yf
-import pandas_datareader.data as web
+from fredapi import Fred
 from datetime import datetime
 
+
+# ---------------------------------------------------------------------------
+# FRED API anahtarını buraya gir
+FRED_API_KEY = "ab61536d2162158eed52b8c0302a84f9"
+# ---------------------------------------------------------------------------
 
 FRED_SERIES = {
     "fed_rate": "FEDFUNDS",
@@ -42,9 +47,11 @@ def fetch_apple_financials() -> pd.DataFrame:
 
 
 def fetch_fred_series(series_id: str, freq: str = "A") -> pd.Series:
-    """Fetch a FRED series and resample to annual mean."""
-    raw = web.DataReader(series_id, "fred", START_DATE, END_DATE)
-    annual = raw.resample(freq).mean().squeeze()
+    """Fetch a FRED series via fredapi and resample to annual mean."""
+    fred = Fred(api_key=FRED_API_KEY)
+    raw = fred.get_series(series_id, observation_start=START_DATE, observation_end=END_DATE)
+    raw.index = pd.to_datetime(raw.index)
+    annual = raw.resample(freq).mean()
     annual.name = series_id
     return annual
 
