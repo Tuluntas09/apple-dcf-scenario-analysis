@@ -110,8 +110,8 @@ Yahoo Finance (yfinance)      FRED API (fredapi)
 
 ```bash
 # 1. Clone
-git clone https://github.com/Tuluntas09/python-apple-dcf-analysis.git
-cd python-apple-dcf-analysis
+git clone https://github.com/Tuluntas09/apple-dcf-scenario-analysis.git
+cd apple-dcf-scenario-analysis
 
 # 2. Install dependencies
 pip install -r requirements.txt
@@ -136,7 +136,7 @@ jupyter notebook
 ## Project Structure
 
 ```
-python-apple-dcf-analysis/
+apple-dcf-scenario-analysis/
 ├── app/
 │   └── streamlit_app.py        # Streamlit dashboard (Bloomberg dark UI)
 ├── notebooks/
@@ -170,8 +170,8 @@ python-apple-dcf-analysis/
 
 ## Related Projects
 
-- [sql-financial-analysis](https://github.com/Tuluntas09/sql-financial-analysis) — PostgreSQL · 28 queries · 5-table e-commerce schema · financial metrics view
-- [power-bi-financial-performance-dashboard](https://github.com/Tuluntas09/power-bi-financial-performance-dashboard) — Power BI · 21 DAX measures · 4-page dashboard
+- [sales-data-analysis-sql](https://github.com/Tuluntas09/sales-data-analysis-sql) — PostgreSQL · 28 queries · 5-table e-commerce schema · financial metrics view
+- [financial-dashboard-powerbi](https://github.com/Tuluntas09/financial-dashboard-powerbi) — Power BI · 21 DAX measures · 4-page dashboard
 - [tcmb-macro-panel](https://github.com/Tuluntas09/tcmb-macro-panel) — Streamlit · TCMB EVDS API · live Turkish macro indicators
 
 ---
