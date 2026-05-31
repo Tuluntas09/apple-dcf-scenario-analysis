@@ -19,6 +19,9 @@ data/raw/*.json
 .vscode/
 .idea/
 
+# Streamlit secrets (contains API keys)
+.streamlit/secrets.toml
+
 # OS
 .DS_Store
 Thumbs.db

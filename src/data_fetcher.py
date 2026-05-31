@@ -9,8 +9,13 @@ from datetime import datetime
 
 
 # ---------------------------------------------------------------------------
-# FRED API anahtarını buraya gir
-FRED_API_KEY = "ab61536d2162158eed52b8c0302a84f9"
+# FRED API key: Streamlit secrets > env var > hardcoded fallback
+import os as _os
+try:
+    import streamlit as _st
+    FRED_API_KEY = _st.secrets["FRED_API_KEY"]
+except Exception:
+    FRED_API_KEY = _os.environ.get("FRED_API_KEY", "")
 # ---------------------------------------------------------------------------
 
 FRED_SERIES = {
