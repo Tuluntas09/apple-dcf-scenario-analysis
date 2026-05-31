@@ -10,9 +10,10 @@ Uses real public data (FRED API + Yahoo Finance) to answer:
 > *How do macroeconomic conditions — interest rates, GDP growth, inflation, and the USD — affect Apple's intrinsic value?*
 
 **Key Findings:**
-- Fed rate is the single most impactful variable: a 100bp rate hike reduces Apple's intrinsic value by ~10–15%
-- GDP growth is the strongest revenue predictor (OLS regression: highest β coefficient, p < 0.05)
-- Bull/Bear scenario gap spans ~$100+ per share — quantifying macro uncertainty on corporate valuation
+- Fed rate +200bp → WACC +150bp → intrinsic value drops **-59%**
+- FCF growth rate is the single most impactful value driver ($59 impact range per share)
+- Bull/Bear scenario gap: **$131 per share** (143% spread) — quantifying macro uncertainty on corporate valuation
+- Base case intrinsic value: **$148** vs. market price $312 (as of analysis date)
 
 ## Project Structure
 
@@ -74,4 +75,4 @@ Open notebooks in order: `01 → 02 → 03 → 04`
 - [power-bi-financial-performance-dashboard](https://github.com/Tuluntas09/power-bi-financial-performance-dashboard) — 4-page Power BI dashboard with 21 DAX measures
 
 ---
-*Tools: Python, pandas, yfinance, pandas-datareader (FRED), statsmodels, matplotlib, seaborn*
+*Tools: Python, pandas, yfinance, fredapi, statsmodels, matplotlib, seaborn*
