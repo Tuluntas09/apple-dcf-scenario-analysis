@@ -34,33 +34,45 @@ st.set_page_config(
 )
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
+# Apple FY2024 fallback — used when Yahoo Finance rate-limits Streamlit Cloud
+AAPL_FALLBACK = {
+    "base_fcf":      108_807_000_000,   # FY2024 Free Cash Flow
+    "net_debt":       67_874_000_000,   # Total Debt − Cash (FY2024)
+    "beta":                      1.24,
+    "shares":       15_115_823_000,
+    "current_price":           None,    # shown as "—" in UI
+}
+
 @st.cache_data(ttl=3600, show_spinner="Apple finansal verileri yükleniyor...")
 def load_apple_data():
-    ticker = yf.Ticker("AAPL")
-    cashflow = ticker.cashflow
-    balance  = ticker.balance_sheet
-    info     = ticker.info
-
-    # FCF
-    if "Free Cash Flow" in cashflow.index:
-        base_fcf = float(cashflow.loc["Free Cash Flow"].iloc[0])
-    else:
-        base_fcf = 99_584_000_000
-
-    # Net debt
     try:
-        total_debt = float(balance.loc["Total Debt"].iloc[0]) if "Total Debt" in balance.index else 0
-        cash       = float(balance.loc["Cash And Cash Equivalents"].iloc[0]) if "Cash And Cash Equivalents" in balance.index else 0
-        net_debt   = total_debt - cash
+        ticker   = yf.Ticker("AAPL")
+        cashflow = ticker.cashflow
+        balance  = ticker.balance_sheet
+        info     = ticker.info
+
+        base_fcf = (float(cashflow.loc["Free Cash Flow"].iloc[0])
+                    if "Free Cash Flow" in cashflow.index
+                    else AAPL_FALLBACK["base_fcf"])
+
+        try:
+            total_debt = float(balance.loc["Total Debt"].iloc[0]) if "Total Debt" in balance.index else 0
+            cash       = float(balance.loc["Cash And Cash Equivalents"].iloc[0]) if "Cash And Cash Equivalents" in balance.index else 0
+            net_debt   = total_debt - cash
+        except Exception:
+            net_debt = AAPL_FALLBACK["net_debt"]
+
+        beta   = info.get("beta")   or AAPL_FALLBACK["beta"]
+        shares = info.get("sharesOutstanding") or AAPL_FALLBACK["shares"]
+        price  = info.get("currentPrice") or info.get("regularMarketPrice")
+
+        return {"base_fcf": base_fcf, "net_debt": net_debt,
+                "beta": beta, "shares": shares, "current_price": price,
+                "source": "live"}
+
     except Exception:
-        net_debt = 36_000_000_000
-
-    beta   = info.get("beta", 1.24)
-    shares = info.get("sharesOutstanding", 15_500_000_000)
-    price  = info.get("currentPrice") or info.get("regularMarketPrice")
-
-    return {"base_fcf": base_fcf, "net_debt": net_debt,
-            "beta": beta, "shares": shares, "current_price": price}
+        # Yahoo Finance rate limit on Streamlit Cloud — use FY2024 actuals
+        return {**AAPL_FALLBACK, "source": "fallback"}
 
 
 @st.cache_data(ttl=3600, show_spinner="FRED makro verileri yükleniyor...")
@@ -215,6 +227,9 @@ for name, sc in SCENARIOS.items():
 # ── Header ────────────────────────────────────────────────────────────────────
 st.title("📊 Apple (AAPL) — DCF Değerleme Analizi")
 st.caption("Makroekonomik senaryo analizi | FRED API + Yahoo Finance | FP&A Portfolio Projesi")
+
+if data.get("source") == "fallback":
+    st.warning("⚠️ Yahoo Finance rate limit nedeniyle Apple FY2024 verileri kullanılıyor (FCF: $108.8B, gerçek zamanlı fiyat mevcut değil).", icon="⚠️")
 
 col1, col2, col3, col4 = st.columns(4)
 col1.metric("💰 Base İçsel Değer",  f"${iv:.2f}")
