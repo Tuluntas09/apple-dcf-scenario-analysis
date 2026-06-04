@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720" role="img" aria-label="Portfolio dashboard preview">
+  <rect width="1200" height="720" fill="#f8fafc"/>
+  <text x="64" y="84" font-family="Arial, sans-serif" font-size="44" font-weight="700" fill="#111827">Portfoy Analizi Dashboard</text>
+  <text x="64" y="126" font-family="Arial, sans-serif" font-size="18" fill="#64748b">Kaynak: Sample veri | Varliklar: SPY, QQQ, TLT, GLD</text>
+  <g transform="translate(64 164)">
+    <rect width="250" height="112" rx="8" fill="#ffffff" stroke="#e5e7eb"/>
+    <text x="24" y="38" font-family="Arial, sans-serif" font-size="15" fill="#64748b">Yillik Getiri</text>
+    <text x="24" y="82" font-family="Arial, sans-serif" font-size="34" fill="#111827">13.03%</text>
+  </g>
+  <g transform="translate(336 164)">
+    <rect width="250" height="112" rx="8" fill="#ffffff" stroke="#e5e7eb"/>
+    <text x="24" y="38" font-family="Arial, sans-serif" font-size="15" fill="#64748b">Yillik Risk</text>
+    <text x="24" y="82" font-family="Arial, sans-serif" font-size="34" fill="#111827">11.70%</text>
+  </g>
+  <g transform="translate(608 164)">
+    <rect width="250" height="112" rx="8" fill="#ffffff" stroke="#e5e7eb"/>
+    <text x="24" y="38" font-family="Arial, sans-serif" font-size="15" fill="#64748b">Sharpe Ratio</text>
+    <text x="24" y="82" font-family="Arial, sans-serif" font-size="34" fill="#111827">0.77</text>
+  </g>
+  <g transform="translate(880 164)">
+    <rect width="250" height="112" rx="8" fill="#ffffff" stroke="#e5e7eb"/>
+    <text x="24" y="38" font-family="Arial, sans-serif" font-size="15" fill="#64748b">En Buyuk Dusus</text>
+    <text x="24" y="82" font-family="Arial, sans-serif" font-size="34" fill="#111827">-17.02%</text>
+  </g>
+  <g transform="translate(64 310)">
+    <rect width="1066" height="342" rx="8" fill="#ffffff" stroke="#e5e7eb"/>
+    <text x="28" y="48" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#111827">Getiri Gelisimi</text>
+    <polyline points="68,260 170,238 270,244 370,210 470,218 570,176 670,164 770,126 870,142 970,88" fill="none" stroke="#2563eb" stroke-width="5"/>
+    <polyline points="68,278 170,266 270,252 370,238 470,232 570,206 670,198 770,174 870,168 970,138" fill="none" stroke="#16a34a" stroke-width="4"/>
+    <polyline points="68,250 170,246 270,240 370,248 470,232 570,228 670,214 770,220 870,204 970,198" fill="none" stroke="#f59e0b" stroke-width="4"/>
+    <line x1="68" y1="286" x2="1000" y2="286" stroke="#e5e7eb"/>
+    <line x1="68" y1="208" x2="1000" y2="208" stroke="#e5e7eb"/>
+    <line x1="68" y1="130" x2="1000" y2="130" stroke="#e5e7eb"/>
+  </g>
+</svg>
