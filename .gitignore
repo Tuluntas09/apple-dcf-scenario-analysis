@@ -1,6 +1,27 @@
+# Python
 __pycache__/
 *.py[cod]
-.pytest_cache/
-pytest-cache-files-*/
-.streamlit/secrets.toml
+*.pyo
+.env
+venv/
 .venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Data (raw files may be large)
+data/raw/*.csv
+data/raw/*.json
+
+# IDE
+.vscode/
+.idea/
+
+# Streamlit secrets (contains API keys)
+.streamlit/secrets.toml
+
+# OS
+.DS_Store
+Thumbs.db
